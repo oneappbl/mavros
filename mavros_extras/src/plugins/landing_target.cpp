@@ -239,6 +239,7 @@ private:
 
 		// if the landing target type is a vision type, compute the angular offsets
 		if (land_target_type.find("VISION")) {
+			std::cout << "[DEBUG] landing target type is vision " <<  land_target_type.find("VISION") << std::endl;
 			/**
 			 * @brief: the camera angular offsets can be computed by knowing the position
 			 * of the target center relative to the camera center, the field-of-view of
@@ -247,6 +248,9 @@ private:
 			 */
 			angle.x() = (pos.x() - image_width / 2.0) * fov.x() / image_width;
 			angle.y() = (pos.y() - image_height / 2.0) * fov.y() / image_height;
+
+			std::cout << "[DEBUG] " << "pose.x = " << pose.x() << ", angle.x = " << angle.x() << ", pose.y = " << pose.x() << ", angle.y = " << angle.y() << std::endl;
+
 			/**
 			 * @brief Angular diameter:
 			 * δ = 2 * atan(d / (2 * D))
@@ -257,6 +261,7 @@ private:
 		}
 		// else, the same values are computed considering the displacement relative to X and Y axes of the camera frame reference
 		else {
+			std::cout << "[DEBUG] landing target type is NOT vision " <<  land_target_type.find("VISION") << std::endl;
 			cartesian_to_displacement(pos, angle);
 			size_rad = {2 * (M_PI / 180.0) * atan(target_size_x / (2 * distance)),
 				    2 * (M_PI / 180.0) * atan(target_size_y / (2 * distance))};
@@ -283,6 +288,7 @@ private:
 					rpy.x(), rpy.y(), rpy.z(), size_rad.x(), size_rad.y(),
 					utils::to_string(static_cast<LANDING_TARGET_TYPE>(type)).c_str());
 
+		std::cout << "[DEBUG] Input to landing_target function | " << "angle = " << angle << ", distance = " << distance << ", size_rad = " << size_rad << std::endl;
 		landing_target(stamp.toNSec() / 1000,
 					id,
 					utils::enum_value(frame),	// by default, in LOCAL_NED
@@ -361,6 +367,7 @@ private:
 	 * @brief callback for PoseStamped msgs topic
 	 */
 	void pose_cb(const geometry_msgs::PoseStamped::ConstPtr &req) {
+		std::cout << "[DEBUG] Inside the pose_cb function. \n \t Pose = " << req->pose << "\n \t Header.stamp = " << req->header.stamp << std::endl;
 		Eigen::Affine3d tr;
 		tf::poseMsgToEigen(req->pose, tr);
 
