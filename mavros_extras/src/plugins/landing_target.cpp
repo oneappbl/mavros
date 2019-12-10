@@ -249,7 +249,7 @@ private:
 			angle.x() = (pos.x() - image_width / 2.0) * fov.x() / image_width;
 			angle.y() = (pos.y() - image_height / 2.0) * fov.y() / image_height;
 
-			std::cout << "[DEBUG] " << "pose.x = " << pose.x() << ", angle.x = " << angle.x() << ", pose.y = " << pose.x() << ", angle.y = " << angle.y() << std::endl;
+			std::cout << "[DEBUG] " << "pos.x = " << pos.x() << ", angle.x = " << angle.x() << ", pos.y = " << pos.x() << ", angle.y = " << angle.y() << std::endl;
 
 			/**
 			 * @brief Angular diameter:
