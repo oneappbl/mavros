@@ -66,6 +66,7 @@ public:
 		frame = utils::mav_frame_from_str(mav_frame);	// MAV_FRAME index based on given frame name (If unknown, defaults to GENERIC)
 
 		nh.param<std::string>("land_target_type", land_target_type, "VISION_FIDUCIAL");
+		std::cout << "Initialize land_target_type = " << land_target_type << std::endl;
 		type = utils::landing_target_type_from_str(land_target_type);	// LANDING_TARGET_TYPE index based on given type name (If unknown, defaults to LIGHT_BEACON)
 
 		// target size
@@ -239,7 +240,7 @@ private:
 
 		// if the landing target type is a vision type, compute the angular offsets
 		if (land_target_type.find("VISION")) {
-			std::cout << "[DEBUG] landing target type is vision " <<  land_target_type.find("VISION") << std::endl;
+			std::cout << "[DEBUG] land target type is vision " <<  land_target_type.find("VISION") << std::endl;
 			/**
 			 * @brief: the camera angular offsets can be computed by knowing the position
 			 * of the target center relative to the camera center, the field-of-view of
@@ -261,7 +262,7 @@ private:
 		}
 		// else, the same values are computed considering the displacement relative to X and Y axes of the camera frame reference
 		else {
-			std::cout << "[DEBUG] landing target type is NOT vision " <<  land_target_type.find("VISION") << std::endl;
+			std::cout << "[DEBUG] land target type is NOT vision " << "land_target_type = " << land_target_type << " " << land_target_type.find("VISION") << std::endl;
 			cartesian_to_displacement(pos, angle);
 			size_rad = {2 * (M_PI / 180.0) * atan(target_size_x / (2 * distance)),
 				    2 * (M_PI / 180.0) * atan(target_size_y / (2 * distance))};
