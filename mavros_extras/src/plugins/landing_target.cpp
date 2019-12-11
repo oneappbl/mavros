@@ -247,6 +247,8 @@ private:
 			 * the camera and the image resolution being considered.
 			 * The target size is computed by the angle of view formula (similar to angular diameter).
 			 */
+			pos.x() = pos.x() * 600;
+			pos.y() = pos.y() * 500;
 			angle.x() = (pos.x() - image_width / 2.0) * fov.x() / image_width;
 			angle.y() = (pos.y() - image_height / 2.0) * fov.y() / image_height;
 
