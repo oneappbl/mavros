@@ -239,7 +239,7 @@ private:
 		float distance = pos.norm();
 
 		// if the landing target type is a vision type, compute the angular offsets
-		if (land_target_type.find("VISION")) {
+		if (land_target_type.find("VISION")!=std::string::npos) {
 			std::cout << "[DEBUG] land target type is vision " <<  land_target_type.find("VISION") << std::endl;
 			/**
 			 * @brief: the camera angular offsets can be computed by knowing the position
