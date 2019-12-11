@@ -247,12 +247,12 @@ private:
 			 * the camera and the image resolution being considered.
 			 * The target size is computed by the angle of view formula (similar to angular diameter).
 			 */
-			pos.x() = pos.x() * 600;
-			pos.y() = pos.y() * 500;
+			//pos.x() = pos.x() * 600;
+			//pos.y() = pos.y() * 500;
 			angle.x() = (pos.x() - image_width / 2.0) * fov.x() / image_width;
 			angle.y() = (pos.y() - image_height / 2.0) * fov.y() / image_height;
 
-			std::cout << "[DEBUG] " << "pos.x = " << pos.x() << ", angle.x = " << angle.x() << ", pos.y = " << pos.x() << ", angle.y = " << angle.y() << std::endl;
+			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \nangle.x = " << angle.x() << ", \npos.y = " << pos.x() << ", \nangle.y = " << angle.y() << std::endl;
 
 			/**
 			 * @brief Angular diameter:
@@ -291,7 +291,7 @@ private:
 					rpy.x(), rpy.y(), rpy.z(), size_rad.x(), size_rad.y(),
 					utils::to_string(static_cast<LANDING_TARGET_TYPE>(type)).c_str());
 
-		std::cout << "[DEBUG] Input to landing_target function | " << "angle = " << angle << ", distance = " << distance << ", size_rad = " << size_rad << std::endl;
+		std::cout << "[DEBUG] Input to landing_target function : " << "\nangle = " << angle << ", \ndistance = " << distance << ", \nsize_rad = " << size_rad << std::endl;
 		landing_target(stamp.toNSec() / 1000,
 					id,
 					utils::enum_value(frame),	// by default, in LOCAL_NED
