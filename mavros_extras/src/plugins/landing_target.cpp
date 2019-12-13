@@ -265,7 +265,8 @@ private:
 		// else, the same values are computed considering the displacement relative to X and Y axes of the camera frame reference
 		else {
 			std::cout << "[DEBUG] land target type is NOT vision " << "land_target_type = " << land_target_type << " " << land_target_type.find("VISION") << std::endl;
-			pos.x() = 0.5;
+			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \npos.y = " << pos.y() << std::endl;
+			pos.x() = 10;
 			pos.y() = 0;
 			cartesian_to_displacement(pos, angle);
 			size_rad = {2 * (M_PI / 180.0) * atan(target_size_x / (2 * distance)),
