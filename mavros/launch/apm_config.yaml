@@ -191,8 +191,8 @@ landing_target:
     listen: false
     frame_id: "landing_target"
     child_frame_id: "camera_center"
-    rate_limit: 10.0
-  target_size: {x:  0.3, y:  0.3}
+    rate_limit: 25.0
+  target_size: {x:  0.34, y:  0.34}
 
 # mocap_pose_estimate
 mocap:

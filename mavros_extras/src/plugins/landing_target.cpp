@@ -266,9 +266,11 @@ private:
 		else {
 			std::cout << "[DEBUG] land target type is NOT vision " << "land_target_type = " << land_target_type << " " << land_target_type.find("VISION") << std::endl;
 			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \npos.y = " << pos.y() << std::endl;
-			pos.x() = 10;
-			pos.y() = 0;
+			//pos.x() = 10;
+			//pos.y() = 0;
 			cartesian_to_displacement(pos, angle);
+			//angle.x() = -45*M_1_PI/180;
+			//angle.y() = -45*M_1_PI/180;
 			size_rad = {2 * (M_PI / 180.0) * atan(target_size_x / (2 * distance)),
 				    2 * (M_PI / 180.0) * atan(target_size_y / (2 * distance))};
 			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \nangle.x = " << angle.x() << ", \npos.y = " << pos.y() << ", \nangle.y = " << angle.y() << std::endl;
