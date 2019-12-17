@@ -156,6 +156,21 @@ private:
 				uint8_t type,
 				uint8_t position_valid)
 	{
+
+		std::cout << "\n[DEBUG] Input to landing_target function : " << std::endl;
+		std::cout << "[DEBUG] time_usec : " << time_usec << std::endl;
+		std::cout << "[DEBUG] target_num : " << target_num << std::endl;
+		//std::cout << "[DEBUG] frame : " << frame << std::endl;
+                printf("[DEBUG] frame : %u\n",frame);
+		std::cout << "[DEBUG] angle[0] : " << angle[0] << ", angle[1] : " << angle[1] << std::endl;
+		std::cout << "[DEBUG] distance :  " << distance << std::endl;
+		std::cout << "[DEBUG] size[0] : " << size[0] << ", size[1] : " << size[1] << std::endl;
+		std::cout << "[DEBUG] pos[0] : " << pos[0] << ", pos[1] : " << pos[1] << ", pos[2] : " << pos[2] << std::endl;
+		//std::cout << "[DEBUG] q : " << q << std::endl;
+		//std::cout << "[DEBUG] type : " << type << std::endl;
+                printf("[DEBUG] type : %u\n",type);
+
+
 		mavlink::common::msg::LANDING_TARGET lt {};
 
 		lt.time_usec = time_usec;
@@ -199,18 +214,22 @@ private:
 		float angle_rad = atan(pos.y() / pos.x()) * (M_PI / 180.0);
 
 		if (pos.x() > 0 && pos.y() > 0) {
+                        std::cout << "[DEBUG] : first quadrant" << std::endl;
 			angle.x() = angle_rad;
 			angle.y() = -angle_rad;
 		}
 		else if (pos.x() < 0 && pos.y() > 0) {
+                        std::cout << "[DEBUG] : second quadrant" << std::endl;
 			angle.x() = M_PI - angle_rad;
 			angle.y() = angle_rad;
 		}
 		else if (pos.x() < 0 && pos.y() < 0) {
+                        std::cout << "[DEBUG] : third quadrant" << std::endl;
 			angle.x() = M_PI + angle_rad;
 			angle.y() = M_PI - angle_rad;
 		}
 		else if (pos.x() > 0 && pos.y() < 0) {
+                        std::cout << "[DEBUG] : fourth quadrant" << std::endl;
 			angle.x() = -angle_rad;
 			angle.y() = M_PI + angle_rad;
 		}
@@ -239,7 +258,8 @@ private:
 		float distance = pos.norm();
 
 		// if the landing target type is a vision type, compute the angular offsets
-		if (land_target_type.find("VISION")!=std::string::npos) {
+		//if (land_target_type.find("VISION")!=std::string::npos) {
+		if (land_target_type.find("VISION")) {
 			std::cout << "[DEBUG] land target type is vision " <<  land_target_type.find("VISION") << std::endl;
 			/**
 			 * @brief: the camera angular offsets can be computed by knowing the position
@@ -291,7 +311,7 @@ private:
 					rpy.x(), rpy.y(), rpy.z(), size_rad.x(), size_rad.y(),
 					utils::to_string(static_cast<LANDING_TARGET_TYPE>(type)).c_str());
 
-		std::cout << "[DEBUG] Input to landing_target function : " << "\nangle = " << angle << ", \ndistance = " << distance << ", \nsize_rad = " << size_rad << std::endl;
+ 
 		landing_target(stamp.toNSec() / 1000,
 					id,
 					utils::enum_value(frame),	// by default, in LOCAL_NED
