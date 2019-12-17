@@ -267,12 +267,11 @@ private:
 			 * the camera and the image resolution being considered.
 			 * The target size is computed by the angle of view formula (similar to angular diameter).
 			 */
-			//pos.x() = pos.x() * 600;
-			//pos.y() = pos.y() * 500;
+
 			angle.x() = (pos.x() - image_width / 2.0) * fov.x() / image_width;
 			angle.y() = (pos.y() - image_height / 2.0) * fov.y() / image_height;
 
-			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \nangle.x = " << angle.x() << ", \npos.y = " << pos.x() << ", \nangle.y = " << angle.y() << std::endl;
+			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \nangle.x = " << angle.x() << ", \npos.y = " << pos.y() << ", \nangle.y = " << angle.y() << std::endl;
 
 			/**
 			 * @brief Angular diameter:
@@ -285,9 +284,13 @@ private:
 		// else, the same values are computed considering the displacement relative to X and Y axes of the camera frame reference
 		else {
 			std::cout << "[DEBUG] land target type is NOT vision " << "land_target_type = " << land_target_type << " " << land_target_type.find("VISION") << std::endl;
+			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \npos.y = " << pos.y() << std::endl;
+			pos.x() = 10;
+			pos.y() = 0;
 			cartesian_to_displacement(pos, angle);
 			size_rad = {2 * (M_PI / 180.0) * atan(target_size_x / (2 * distance)),
 				    2 * (M_PI / 180.0) * atan(target_size_y / (2 * distance))};
+			std::cout << "[DEBUG] " << "\npos.x = " << pos.x() << ", \nangle.x = " << angle.x() << ", \npos.y = " << pos.y() << ", \nangle.y = " << angle.y() << std::endl;
 		}
 
 		if (last_transform_stamp == stamp) {
