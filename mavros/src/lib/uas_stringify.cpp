@@ -67,7 +67,7 @@ static const cmode_map arducopter_cmode_map{{
 	{ 7, "CIRCLE" },
 	{ 8, "POSITION" },	// not in list
 	{ 9, "LAND" },
-	{ 10, "OF_LOITER" },
+	{ 10, "PLAND" },
 	{ 11, "DRIFT" },	// renamed, prev name: APPROACH
 	{ 13, "SPORT" },
 	{ 14, "FLIP" },
