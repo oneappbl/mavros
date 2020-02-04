@@ -1,0 +1,22 @@
+mavros/plugin_blacklist: 
+# common
+- actuator_control
+- ftp
+- safety_area
+- hil
+# extras
+- altitude
+- debug_value
+- image_pub
+- px4flow
+- vibration
+- vision_speed_estimate
+- wheel_odometry
+#- distance_sensor
+
+mavros/plugin_whitelist: 
+#- 'sys_*'
+#extras
+- distance_sensor
+#- rangefinder
+#- px4flow
